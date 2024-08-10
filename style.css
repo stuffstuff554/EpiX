@@ -1,0 +1,73 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f8f0; /* Light green background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Welcome Container Styles */
+#Welcome {
+    text-align: center;
+    background: #4caf50; /* Main green color */
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Heading Styles */
+#Welcome h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    animation: slideInFromTop 1s ease-out;
+}
+
+#Welcome h3 {
+    margin: 0.5rem 0 2rem;
+    font-size: 1.2rem;
+    animation: fadeIn 2s ease-in;
+}
+
+/* Button Styles */
+button {
+    background: #fff;
+    color: #4caf50;
+    border: none;
+    padding: 0.8rem 2rem;
+    margin: 0 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    animation: buttonFadeIn 2s ease-in;
+}
+
+button:hover {
+    background: #e8f5e9;
+    transform: scale(1.05);
+}
+
+button:active {
+    background: #c8e6c9;
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes buttonFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
