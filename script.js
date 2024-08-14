@@ -13,7 +13,7 @@ async function sendMessage(message) {
         });
         
         const data = await response.json();
-        return data.response
+        return data;
     } catch (error) {
         console.error('Error:', error);
         alert("An error occured! " + error);
@@ -37,11 +37,26 @@ function LoadedNew() {
     WelcomeDIV_Register.addEventListener('click', function() {
         const Username = prompt("Please enter your new username");
         const Password = prompt("Please enter your new password");
-        sendMessage({"MSG" : "Register", "Username" : Username, "Password" : Password});
+
+        // Sends register request to the server
+        const FromServer = sendMessage({"MSG" : "Register", "Username" : Username, "Password" : Password});
+
+        if (FromServer == "AE") {
+            alert("Please attempt to create another account. (Already Exists)");
+        } else if (FromServer == "Done") {
+            alert("You now have an EpiX account! (Sucsess)");
+        } else {
+            // Display if the server malformed
+            alert("The server malformed? (" + FromServer + ")")
+        }
     });
 
     WelcomeDIV_Login.addEventListener('click', function() {
-        alert("This feature is still in development");
+        const Username = prompt("Please enter your username");
+        const Password = prompt("Please enter your password");
+
+        // Sends request to server to login.
+        const FromServer = sendMessage({"MSG" : "Login", "Username" : Username, "Password" : Password})
     });
     
     // OnStart
