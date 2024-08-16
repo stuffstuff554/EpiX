@@ -20,6 +20,10 @@ async function sendMessage(message) {
     }
 }
 
+function GrabName() {
+    return sendMessage({"MSG" : "GrabName"});
+}
+
 function LoadedNew() {
     // Sounds
     var StartUPSound = new Audio('Start.wav');
@@ -27,11 +31,14 @@ function LoadedNew() {
     // DIVS
     const WelcomeDIV = document.getElementById("Welcome");
     const HomeDIV = document.getElementById("Home");
-    const UnderRatedDIV = document.getElementById("Firefox");
 
     // Buttons
     var WelcomeDIV_Register = WelcomeDIV.querySelector("#Welcome-Register");
     var WelcomeDIV_Login = WelcomeDIV.querySelector("#Welcome-Login");
+
+    // Text
+
+    var HomeName = HomeDIV.querySelector("#Home-NameDisplay");
 
     // Button Functions
     WelcomeDIV_Register.addEventListener('click', function() {
@@ -57,13 +64,24 @@ function LoadedNew() {
 
         // Sends request to server to login.
         const FromServer = sendMessage({"MSG" : "Login", "Username" : Username, "Password" : Password})
+
+        if (FromServer == "Failed") {
+            alert("An error occured!");
+        } else {
+            alert("You are now logged in! Use the LOGOUT button to log off of this computer!");
+            LoggedIn(GrabName());
+        }
+
     });
     
     // OnStart
     WelcomeDIV.style.display = 'block';
     HomeDIV.style.display = 'none';
-    if (UnderRatedDIV) { // Check if UnderRatedDIV exists
-        UnderRatedDIV.style.display = 'none';
+
+    function LoggedIn(Name) {
+        HomeDIV.style.display = 'block';
+        WelcomeDIV.style.display = 'none';
+        HomeName.innerText = "Current User: " + Name
     }
 }
 
